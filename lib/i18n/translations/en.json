@@ -1,0 +1,233 @@
+{
+  "common": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "messages": "Messages",
+    "settings": "Settings",
+    "calendar": "Calendar",
+    "findJobs": "Find Jobs",
+    "postJob": "Post Job",
+    "about": "About",
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy",
+    "copyright": "© 2025 DevConnect. All rights reserved.",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": "Language",
+    "toggleMenu": "Toggle Menu",
+    "toggleTheme": "Toggle Theme",
+    "loading": "Loading..."
+  },
+  "home": {
+    "hero": {
+      "title": "Connect Top Developers with Great Companies",
+      "subtitle": "The modern platform for hiring developers on hourly, full-time, part-time, or project basis. We handle everything from interviews to placement.",
+      "developerButton": "I'm a Developer",
+      "companyButton": "I'm Hiring",
+      "imageAlt": "Developer Collaboration"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "A simple, streamlined process for connecting developers and companies",
+      "profileTitle": "Create Your Profile",
+      "profileDescription": "Sign up and create a detailed profile showcasing your skills and experience.",
+      "interviewTitle": "Interview and Match",
+      "interviewDescription": "Connect with companies that match your skills and preferences.",
+      "startTitle": "Start Working",
+      "startDescription": "Begin your new role with all the support you need to succeed."
+    },
+    "developers": {
+      "title": "For Developers",
+      "subtitle": "Find opportunities that match your skills and preferences",
+      "flexibleTitle": "Flexible Work Options",
+      "flexibleDescription": "Choose from full-time, part-time, contract, or project-based opportunities.",
+      "showcaseTitle": "Showcase Your Skills",
+      "showcaseDescription": "Create a comprehensive profile to highlight your expertise and experience.",
+      "competitiveTitle": "Competitive Rates",
+      "competitiveDescription": "Set your own rates and get paid what you're worth.",
+      "joinButton": "Join as a Developer"
+    },
+    "companies": {
+      "title": "For Companies",
+      "subtitle": "Find the right talent for your team",
+      "vettedTitle": "Vetted Talent",
+      "vettedDescription": "Access a pool of pre-screened developers with verified skills and experience.",
+      "flexibleTitle": "Flexible Hiring",
+      "flexibleDescription": "Hire for full-time positions, part-time roles, or specific projects.",
+      "streamlinedTitle": "Streamlined Process",
+      "streamlinedDescription": "Our platform handles everything from sourcing to contracts and payments.",
+      "hireButton": "Start Hiring"
+    },
+    "pricing": {
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "Choose the plan that works best for your needs",
+      "basicTitle": "Basic",
+      "basicDescription": "For individuals and small teams",
+      "basicPostings": "Up to 5 job postings",
+      "basicFiltering": "Basic candidate filtering",
+      "basicSupport": "Email support",
+      "professionalTitle": "Professional",
+      "professionalDescription": "For growing businesses",
+      "professionalPostings": "Up to 20 job postings",
+      "advancedFiltering": "Advanced candidate filtering",
+      "prioritySupport": "Priority email support",
+      "skillAssessment": "Candidate skill assessment",
+      "enterpriseTitle": "Enterprise",
+      "enterpriseDescription": "For large organizations",
+      "unlimitedPostings": "Unlimited job postings",
+      "customFiltering": "Custom candidate filtering",
+      "support": "24/7 phone and email support",
+      "analytics": "Advanced analytics and reporting",
+      "accountManager": "Dedicated account manager",
+      "getStarted": "Get Started",
+      "contactSales": "Contact Sales"
+    },
+    "testimonials": {
+      "title": "What Our Users Say",
+      "subtitle": "Hear from developers and companies who have found success on DevConnect",
+      "sarah": "DevConnect helped me find a remote position that perfectly matches my skills and desired work schedule. The platform made it easy to showcase my portfolio and connect with great companies.",
+      "michael": "As a growing startup, finding the right technical talent was our biggest challenge. DevConnect simplified our hiring process and connected us with pre-vetted developers who fit our needs perfectly.",
+      "emily": "The flexibility of DevConnect allows me to take on interesting projects while maintaining my work-life balance. I've found high-quality clients and built long-term professional relationships."
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join thousands of developers and companies already using DevConnect",
+      "developerButton": "Join as Developer",
+      "companyButton": "Join as Company"
+    }
+  },
+  "pricing": {
+    "title": "Transparent Pricing",
+    "subtitle": "Choose the plan that works best for your needs",
+    "tabs": {
+      "companies": "For Companies",
+      "developers": "For Developers"
+    },
+    "plans": {
+      "basic": {
+        "title": "Basic",
+        "description": "For individuals and small teams",
+        "price": "$49",
+        "period": "/month",
+        "features": ["Up to 5 job postings", "Basic candidate filtering", "Email support", "1 user account"],
+        "cta": "Get Started"
+      },
+      "professional": {
+        "title": "Professional",
+        "description": "For growing businesses",
+        "price": "$99",
+        "period": "/month",
+        "badge": "Popular",
+        "features": [
+          "Up to 20 job postings",
+          "Advanced candidate filtering",
+          "Priority email support",
+          "Candidate skill assessment",
+          "5 user accounts",
+          "Basic analytics"
+        ],
+        "cta": "Get Started"
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "description": "For large organizations",
+        "price": "$249",
+        "period": "/month",
+        "features": [
+          "Unlimited job postings",
+          "Custom candidate filtering",
+          "24/7 phone and email support",
+          "Advanced analytics and reporting",
+          "Unlimited user accounts",
+          "Dedicated account manager",
+          "API access"
+        ],
+        "cta": "Contact Sales"
+      },
+      "free": {
+        "title": "Free",
+        "description": "For individual developers",
+        "price": "$0",
+        "period": "/month",
+        "features": ["Basic profile", "Apply to up to 5 jobs per month", "Email support"],
+        "cta": "Sign Up"
+      },
+      "pro": {
+        "title": "Pro",
+        "description": "For serious job seekers",
+        "price": "$19",
+        "period": "/month",
+        "badge": "Popular",
+        "features": [
+          "Enhanced profile with portfolio",
+          "Unlimited job applications",
+          "Priority in search results",
+          "Early access to new jobs",
+          "Priority support"
+        ],
+        "cta": "Sign Up"
+      },
+      "premium": {
+        "title": "Premium",
+        "description": "For elite developers",
+        "price": "$39",
+        "period": "/month",
+        "features": [
+          "All Pro features",
+          "Featured profile status",
+          "Direct messaging to companies",
+          "Skills assessment certification",
+          "Career coaching session (monthly)"
+        ],
+        "cta": "Sign Up"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Answers to common questions about our pricing",
+      "questions": [
+        {
+          "question": "Can I change plans later?",
+          "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes to your subscription will be prorated based on the time remaining in your billing cycle."
+        },
+        {
+          "question": "Is there a free trial?",
+          "answer": "Yes, we offer a 14-day free trial for all company plans. Developers can use the basic plan for free indefinitely."
+        },
+        {
+          "question": "What payment methods do you accept?",
+          "answer": "We accept all major credit cards, PayPal, and bank transfers for annual plans. We do not accept cryptocurrency at this time."
+        },
+        {
+          "question": "Can I get a refund?",
+          "answer": "We offer a 30-day money-back guarantee for all plans. If you're not satisfied with our service, contact our support team within 30 days of your purchase for a full refund."
+        },
+        {
+          "question": "Do you offer discounts?",
+          "answer": "Yes, we offer discounts for annual billing (save 20%) and for startups, non-profits, and educational institutions. Contact our sales team for more information."
+        },
+        {
+          "question": "What happens when I reach my job posting limit?",
+          "answer": "When you reach your job posting limit, you can either upgrade to a higher plan or purchase additional job postings as needed. We offer flexible options to accommodate your hiring needs."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Still have questions?",
+      "subtitle": "Our team is here to help. Contact us for more information about our pricing or to discuss custom plans for your specific needs.",
+      "contactButton": "Contact Sales",
+      "demoButton": "Schedule Demo",
+      "demoTooltip": "See DevConnect in action with a personalized demo"
+    }
+  }
+}
+
