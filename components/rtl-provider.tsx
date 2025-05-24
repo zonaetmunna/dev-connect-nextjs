@@ -12,6 +12,7 @@ interface RTLProviderProps {
 export function RTLProvider({ children }: RTLProviderProps) {
   const { dir, mounted, locale } = useTranslation()
 
+  // Only update the DOM after mounting to avoid hydration mismatch
   useEffect(() => {
     if (mounted) {
       // Set document direction
@@ -38,6 +39,7 @@ export function RTLProvider({ children }: RTLProviderProps) {
     }
   }, [dir, mounted, locale])
 
+  // Return children directly, the effect will handle the RTL/LTR changes
   return <>{children}</>
 }
 

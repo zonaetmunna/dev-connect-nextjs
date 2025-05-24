@@ -1,9 +1,9 @@
 "use client"
 
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 // Import all translation files
+import { useParams, usePathname } from "next/navigation"
 import ar from "./translations/ar.json"
 import en from "./translations/en.json"
 import es from "./translations/es.json"
@@ -38,19 +38,22 @@ const getNestedTranslation = (obj: any, path: string) => {
 
 // Custom hook to use translations
 export const useTranslation = () => {
-  const router = useRouter()
-  const { locale = "en" } = router
+  const pathname = usePathname()
+  const params = useParams()
   const [mounted, setMounted] = useState(false)
+  const [currentLocale, setCurrentLocale] = useState("en")
 
-  // Set mounted state to true after component mounts
   useEffect(() => {
     setMounted(true)
-  }, [])
+    // Get locale from URL or localStorage or default to 'en'
+    const locale = params?.locale as string || localStorage.getItem("locale") || "en"
+    setCurrentLocale(locale)
+  }, [params?.locale])
 
   // Function to get translation by key
   const t = (key: string, params?: Record<string, string>) => {
     // Get the translations for the current locale
-    const localeTranslations = translations[locale as keyof typeof translations] || translations.en
+    const localeTranslations = translations[currentLocale as keyof typeof translations] || translations.en
 
     // Get the translation using the key
     let translation = getNestedTranslation(localeTranslations, key)
@@ -78,15 +81,20 @@ export const useTranslation = () => {
 
   // Function to change the language
   const changeLanguage = (newLocale: string) => {
-    router.push(router.pathname, router.asPath, { locale: newLocale })
+    if (languages[newLocale as keyof typeof languages]) {
+      localStorage.setItem("locale", newLocale)
+      setCurrentLocale(newLocale)
+      // Reload the page to apply the new locale
+      window.location.reload()
+    }
   }
 
   // Get the text direction for the current locale
-  const dir = languages[locale as keyof typeof languages]?.dir || "ltr"
+  const dir = languages[currentLocale as keyof typeof languages]?.dir || "ltr"
 
   return {
     t,
-    locale,
+    locale: currentLocale,
     changeLanguage,
     languages,
     dir,

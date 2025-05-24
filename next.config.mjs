@@ -1,18 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  i18n: {
-    // List of supported locales
-    locales: ['en', 'es', 'fr', 'ar', 'de', 'ja'],
-    // Default locale
-    defaultLocale: 'en',
-    // Automatic locale detection
-    localeDetection: true,
-  },
-  // Add support for RTL languages
-  experimental: {
-    // This enables the built-in RTL support
-    reactRoot: true,
-  }
+  // Add any valid Next.js configuration options here
 };
 
 export default nextConfig;

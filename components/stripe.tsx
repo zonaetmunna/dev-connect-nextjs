@@ -2,10 +2,10 @@
 
 import type React from "react"
 
-import { useEffect, useState } from "react"
 import { Elements } from "@stripe/react-stripe-js"
+import type { Stripe, StripeElementsOptions } from "@stripe/stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
-import type { StripeElementsOptions } from "@stripe/stripe-js"
+import { useEffect, useState } from "react"
 
 interface StripeProps {
   children: React.ReactNode
@@ -15,11 +15,12 @@ interface StripeProps {
 
 // Mock Stripe implementation for demonstration purposes
 export function Stripe({ children, options, className }: StripeProps) {
-  const [stripePromise, setStripePromise] = useState(null)
-
+  const [stripePromise, setStripePromise] = useState<Stripe | null>(null);
   useEffect(() => {
     // In a real implementation, you would use your actual Stripe publishable key
-    setStripePromise(loadStripe("pk_test_mock_key"))
+    loadStripe("pk_test_mock_key").then((stripePromise) => {
+      setStripePromise(stripePromise)
+    })
   }, [])
 
   return (

@@ -1,22 +1,29 @@
-"use client"
+"use client";
 
-import { Navbar } from "@/components/navbar"
-import Link from "next/link"
-import { ArrowRight, CheckCircle, Code, Globe, Users } from "lucide-react"
-import { useEffect, useState } from "react"
+import { Navbar } from "@/components/navbar";
+import { ArrowRight, CheckCircle, Code, Globe, Users } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { useTranslation } from "@/lib/i18n"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useTranslation } from "@/lib/i18n";
 
 export default function Home() {
-  const { t, dir, locale } = useTranslation()
-  const [mounted, setMounted] = useState(false)
+  const { t, dir, locale } = useTranslation();
+  const [mounted, setMounted] = useState(false);
 
   // After mounting, we can safely show the UI
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   // This ensures all content is properly rendered after client-side hydration
   if (!mounted) {
@@ -24,14 +31,14 @@ export default function Home() {
       <div className="flex min-h-screen flex-col items-center justify-center">
         <div className="animate-pulse">{t("common.loading")}</div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="flex flex-col min-h-screen" dir={dir}>
       <Navbar />
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32">
+          <section className="w-full container mx-auto py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
               <div className="flex flex-col justify-center space-y-4">
@@ -39,11 +46,15 @@ export default function Home() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                     {t("home.hero.title")}
                   </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">{t("home.hero.subtitle")}</p>
+                  <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+                    {t("home.hero.subtitle")}
+                  </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link href="/signup?type=developer">
-                    <Button className="w-full">{t("home.hero.developerButton")}</Button>
+                    <Button className="w-full">
+                      {t("home.hero.developerButton")}
+                    </Button>
                   </Link>
                   <Link href="/signup?type=company">
                     <Button className="w-full" variant="outline">
@@ -65,7 +76,7 @@ export default function Home() {
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -81,28 +92,40 @@ export default function Home() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
                   <Users className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold">{t("home.howItWorks.profileTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.howItWorks.profileDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.howItWorks.profileTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.howItWorks.profileDescription")}
+                </p>
               </div>
               <div className="flex flex-col justify-center space-y-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
                   <Code className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold">{t("home.howItWorks.interviewTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.howItWorks.interviewDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.howItWorks.interviewTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.howItWorks.interviewDescription")}
+                </p>
               </div>
               <div className="flex flex-col justify-center space-y-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
                   <Globe className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold">{t("home.howItWorks.startTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.howItWorks.startDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.howItWorks.startTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.howItWorks.startDescription")}
+                </p>
               </div>
             </div>
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -115,30 +138,44 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">{t("home.developers.flexibleTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.developers.flexibleDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.developers.flexibleTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.developers.flexibleDescription")}
+                </p>
               </div>
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">{t("home.developers.showcaseTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.developers.showcaseDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.developers.showcaseTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.developers.showcaseDescription")}
+                </p>
               </div>
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">{t("home.developers.competitiveTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.developers.competitiveDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.developers.competitiveTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.developers.competitiveDescription")}
+                </p>
               </div>
             </div>
             <div className="flex justify-center">
               <Link href="/signup?type=developer">
                 <Button>
                   {t("home.developers.joinButton")}
-                  <ArrowRight className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`} />
+                  <ArrowRight
+                    className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`}
+                  />
                 </Button>
               </Link>
             </div>
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -151,30 +188,44 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">{t("home.companies.vettedTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.companies.vettedDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.companies.vettedTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.companies.vettedDescription")}
+                </p>
               </div>
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">{t("home.companies.flexibleTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.companies.flexibleDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.companies.flexibleTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.companies.flexibleDescription")}
+                </p>
               </div>
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">{t("home.companies.streamlinedTitle")}</h3>
-                <p className="text-gray-500 dark:text-gray-400">{t("home.companies.streamlinedDescription")}</p>
+                <h3 className="text-xl font-bold">
+                  {t("home.companies.streamlinedTitle")}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {t("home.companies.streamlinedDescription")}
+                </p>
               </div>
             </div>
             <div className="flex justify-center">
               <Link href="/signup?type=company">
                 <Button>
                   {t("home.companies.hireButton")}
-                  <ArrowRight className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`} />
+                  <ArrowRight
+                    className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`}
+                  />
                 </Button>
               </Link>
             </div>
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto   px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -189,36 +240,56 @@ export default function Home() {
               <Card className="flex flex-col">
                 <CardHeader>
                   <CardTitle>{t("home.pricing.basicTitle")}</CardTitle>
-                  <CardDescription>{t("home.pricing.basicDescription")}</CardDescription>
+                  <CardDescription>
+                    {t("home.pricing.basicDescription")}
+                  </CardDescription>
                   <div className="mt-4 text-4xl font-bold">
                     {t("pricing.plans.basic.price")}
-                    <span className="text-sm font-normal text-muted-foreground">{t("pricing.plans.basic.period")}</span>
+                    <span className="text-sm font-normal text-muted-foreground">
+                      {t("pricing.plans.basic.period")}
+                    </span>
                   </div>
                 </CardHeader>
                 <CardContent className="flex-1">
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.basicPostings")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.basicFiltering")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.basicSupport")}</span>
                     </li>
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">{t("home.pricing.getStarted")}</Button>
+                  <Button className="w-full">
+                    {t("home.pricing.getStarted")}
+                  </Button>
                 </CardFooter>
               </Card>
               <Card className="flex flex-col border-primary">
                 <CardHeader>
                   <CardTitle>{t("home.pricing.professionalTitle")}</CardTitle>
-                  <CardDescription>{t("home.pricing.professionalDescription")}</CardDescription>
+                  <CardDescription>
+                    {t("home.pricing.professionalDescription")}
+                  </CardDescription>
                   <div className="mt-4 text-4xl font-bold">
                     {t("pricing.plans.professional.price")}
                     <span className="text-sm font-normal text-muted-foreground">
@@ -229,31 +300,51 @@ export default function Home() {
                 <CardContent className="flex-1">
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.professionalPostings")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.advancedFiltering")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.prioritySupport")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.skillAssessment")}</span>
                     </li>
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">{t("home.pricing.getStarted")}</Button>
+                  <Button className="w-full">
+                    {t("home.pricing.getStarted")}
+                  </Button>
                 </CardFooter>
               </Card>
               <Card className="flex flex-col">
                 <CardHeader>
                   <CardTitle>{t("home.pricing.enterpriseTitle")}</CardTitle>
-                  <CardDescription>{t("home.pricing.enterpriseDescription")}</CardDescription>
+                  <CardDescription>
+                    {t("home.pricing.enterpriseDescription")}
+                  </CardDescription>
                   <div className="mt-4 text-4xl font-bold">
                     {t("pricing.plans.enterprise.price")}
                     <span className="text-sm font-normal text-muted-foreground">
@@ -264,36 +355,58 @@ export default function Home() {
                 <CardContent className="flex-1">
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.unlimitedPostings")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.customFiltering")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.support")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.analytics")}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className={`${dir === "rtl" ? "ml-2" : "mr-2"} h-4 w-4 text-primary`} />
+                      <CheckCircle
+                        className={`${
+                          dir === "rtl" ? "ml-2" : "mr-2"
+                        } h-4 w-4 text-primary`}
+                      />
                       <span>{t("home.pricing.accountManager")}</span>
                     </li>
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">{t("home.pricing.contactSales")}</Button>
+                  <Button className="w-full">
+                    {t("home.pricing.contactSales")}
+                  </Button>
                 </CardFooter>
               </Card>
             </div>
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -322,7 +435,9 @@ export default function Home() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{t("home.testimonials.sarah")}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {t("home.testimonials.sarah")}
+                  </p>
                 </CardContent>
               </Card>
               <Card>
@@ -342,7 +457,9 @@ export default function Home() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{t("home.testimonials.michael")}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {t("home.testimonials.michael")}
+                  </p>
                 </CardContent>
               </Card>
               <Card>
@@ -356,22 +473,28 @@ export default function Home() {
                       width="40"
                     />
                     <div>
-                      <CardTitle className="text-base">Emily Rodriguez</CardTitle>
+                      <CardTitle className="text-base">
+                        Emily Rodriguez
+                      </CardTitle>
                       <CardDescription>Freelance Developer</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{t("home.testimonials.emily")}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {t("home.testimonials.emily")}
+                  </p>
                 </CardContent>
               </Card>
             </div>
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
+          <div className="container mx-auto grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">{t("home.cta.title")}</h2>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                {t("home.cta.title")}
+              </h2>
               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 {t("home.cta.subtitle")}
               </p>
@@ -388,40 +511,62 @@ export default function Home() {
         </section>
       </main>
       <footer className="border-t py-6 md:py-8">
-        <div className="container flex flex-col gap-6 px-4 md:flex-row md:items-center md:px-6">
+        <div className="container mx-auto flex flex-col gap-6 px-4 md:flex-row md:items-center md:px-6">
           <div className="flex flex-col gap-2">
             <Link href="/" className="flex items-center gap-2">
               <Code className={`h-5 w-5 ${dir === "rtl" ? "ml-2" : "mr-2"}`} />
               <span className="font-semibold">DevConnect</span>
             </Link>
-            <p className="text-xs text-gray-500 dark:text-gray-400">{t("common.copyright")}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {t("common.copyright")}
+            </p>
           </div>
           <nav className="flex flex-wrap gap-4 sm:gap-6 md:ml-auto">
-            <Link className="text-xs hover:underline underline-offset-4" href="/about">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/about"
+            >
               {t("common.about")}
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/how-it-works">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/how-it-works"
+            >
               {t("common.howItWorks")}
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/pricing">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/pricing"
+            >
               {t("common.pricing")}
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/blog">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/blog"
+            >
               {t("common.blog")}
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/contact">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/contact"
+            >
               {t("common.contact")}
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/terms">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/terms"
+            >
               {t("common.terms")}
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/privacy">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/privacy"
+            >
               {t("common.privacy")}
             </Link>
           </nav>
         </div>
       </footer>
     </div>
-  )
+  );
 }
-
