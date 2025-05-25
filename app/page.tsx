@@ -5,6 +5,14 @@ import { ArrowRight, CheckCircle, Code, Globe, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import {
+  CardAnimation,
+  FadeUpSection,
+  FloatingElement,
+  ParallaxSection,
+  StaggeredCards,
+  TextReveal
+} from "@/components/ui/animations";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -38,192 +46,238 @@ export default function Home() {
     <div className="flex flex-col min-h-screen" dir={dir}>
       <Navbar />
       <main className="flex-1">
-          <section className="w-full container mx-auto py-12 md:py-24 lg:py-32">
+        <section className="w-full container mx-auto py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                    {t("home.hero.title")}
-                  </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    {t("home.hero.subtitle")}
-                  </p>
+              <FadeUpSection>
+                <div className="flex flex-col justify-center space-y-4">
+                  <div className="space-y-2">
+                    <TextReveal>
+                      <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                        {t("home.hero.title")}
+                      </h1>
+                    </TextReveal>
+                    <TextReveal delay={0.2}>
+                      <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+                        {t("home.hero.subtitle")}
+                      </p>
+                    </TextReveal>
+                  </div>
+                  <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                    <Link href="/signup?type=developer">
+                      <Button className="w-full">
+                        {t("home.hero.developerButton")}
+                      </Button>
+                    </Link>
+                    <Link href="/signup?type=company">
+                      <Button className="w-full" variant="outline">
+                        {t("home.hero.companyButton")}
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="/signup?type=developer">
-                    <Button className="w-full">
-                      {t("home.hero.developerButton")}
-                    </Button>
-                  </Link>
-                  <Link href="/signup?type=company">
-                    <Button className="w-full" variant="outline">
-                      {t("home.hero.companyButton")}
-                    </Button>
-                  </Link>
+              </FadeUpSection>
+              <FloatingElement duration={4} y={15}>
+                <div className="flex items-center justify-center">
+                  <img
+                    alt={t("home.hero.imageAlt")}
+                    className="rounded-lg object-cover"
+                    height="550"
+                    src="/placeholder.svg?height=550&width=550"
+                    width="550"
+                  />
                 </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <img
-                  alt={t("home.hero.imageAlt")}
-                  className="rounded-lg object-cover"
-                  height="550"
-                  src="/placeholder.svg?height=550&width=550"
-                  width="550"
-                />
-              </div>
+              </FloatingElement>
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  {t("home.howItWorks.title")}
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  {t("home.howItWorks.subtitle")}
-                </p>
+        <ParallaxSection>
+          <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <FadeUpSection>
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                      {t("home.howItWorks.title")}
+                    </h2>
+                    <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                      {t("home.howItWorks.subtitle")}
+                    </p>
+                  </div>
+                </FadeUpSection>
               </div>
+              <StaggeredCards>
+                <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+                  <CardAnimation>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
+                        <Users className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-xl font-bold">
+                        {t("home.howItWorks.profileTitle")}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {t("home.howItWorks.profileDescription")}
+                      </p>
+                    </div>
+                  </CardAnimation>
+                  <CardAnimation>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
+                        <Code className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-xl font-bold">
+                        {t("home.howItWorks.interviewTitle")}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {t("home.howItWorks.interviewDescription")}
+                      </p>
+                    </div>
+                  </CardAnimation>
+                  <CardAnimation>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
+                        <Globe className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-xl font-bold">
+                        {t("home.howItWorks.startTitle")}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {t("home.howItWorks.startDescription")}
+                      </p>
+                    </div>
+                  </CardAnimation>
+                </div>
+              </StaggeredCards>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
-                  <Users className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">
-                  {t("home.howItWorks.profileTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.howItWorks.profileDescription")}
-                </p>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
-                  <Code className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">
-                  {t("home.howItWorks.interviewTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.howItWorks.interviewDescription")}
-                </p>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
-                  <Globe className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">
-                  {t("home.howItWorks.startTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.howItWorks.startDescription")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </ParallaxSection>
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  {t("home.developers.title")}
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  {t("home.developers.subtitle")}
-                </p>
-              </div>
+              <FadeUpSection>
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                    {t("home.developers.title")}
+                  </h2>
+                  <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                    {t("home.developers.subtitle")}
+                  </p>
+                </div>
+              </FadeUpSection>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">
-                  {t("home.developers.flexibleTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.developers.flexibleDescription")}
-                </p>
+            <StaggeredCards>
+              <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+                <CardAnimation>
+                  <div className="flex flex-col justify-center space-y-4">
+                    <h3 className="text-xl font-bold">
+                      {t("home.developers.flexibleTitle")}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("home.developers.flexibleDescription")}
+                    </p>
+                  </div>
+                </CardAnimation>
+                <CardAnimation>
+                  <div className="flex flex-col justify-center space-y-4">
+                    <h3 className="text-xl font-bold">
+                      {t("home.developers.showcaseTitle")}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("home.developers.showcaseDescription")}
+                    </p>
+                  </div>
+                </CardAnimation>
+                <CardAnimation>
+                  <div className="flex flex-col justify-center space-y-4">
+                    <h3 className="text-xl font-bold">
+                      {t("home.developers.competitiveTitle")}
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("home.developers.competitiveDescription")}
+                    </p>
+                  </div>
+                </CardAnimation>
               </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">
-                  {t("home.developers.showcaseTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.developers.showcaseDescription")}
-                </p>
+            </StaggeredCards>
+            <FadeUpSection delay={0.4}>
+              <div className="flex justify-center">
+                <Link href="/signup?type=developer">
+                  <Button>
+                    {t("home.developers.joinButton")}
+                    <ArrowRight
+                      className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`}
+                    />
+                  </Button>
+                </Link>
               </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">
-                  {t("home.developers.competitiveTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.developers.competitiveDescription")}
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Link href="/signup?type=developer">
-                <Button>
-                  {t("home.developers.joinButton")}
-                  <ArrowRight
-                    className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`}
-                  />
-                </Button>
-              </Link>
-            </div>
+            </FadeUpSection>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  {t("home.companies.title")}
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  {t("home.companies.subtitle")}
-                </p>
+        <ParallaxSection>
+          <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <FadeUpSection>
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                      {t("home.companies.title")}
+                    </h2>
+                    <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                      {t("home.companies.subtitle")}
+                    </p>
+                  </div>
+                </FadeUpSection>
               </div>
+              <StaggeredCards>
+                <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+                  <CardAnimation>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <h3 className="text-xl font-bold">
+                        {t("home.companies.vettedTitle")}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {t("home.companies.vettedDescription")}
+                      </p>
+                    </div>
+                  </CardAnimation>
+                  <CardAnimation>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <h3 className="text-xl font-bold">
+                        {t("home.companies.flexibleTitle")}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {t("home.companies.flexibleDescription")}
+                      </p>
+                    </div>
+                  </CardAnimation>
+                  <CardAnimation>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <h3 className="text-xl font-bold">
+                        {t("home.companies.costTitle")}
+                      </h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {t("home.companies.costDescription")}
+                      </p>
+                    </div>
+                  </CardAnimation>
+                </div>
+              </StaggeredCards>
+              <FadeUpSection delay={0.4}>
+                <div className="flex justify-center">
+                  <Link href="/signup?type=company">
+                    <Button>
+                      {t("home.companies.joinButton")}
+                      <ArrowRight
+                        className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`}
+                      />
+                    </Button>
+                  </Link>
+                </div>
+              </FadeUpSection>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">
-                  {t("home.companies.vettedTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.companies.vettedDescription")}
-                </p>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">
-                  {t("home.companies.flexibleTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.companies.flexibleDescription")}
-                </p>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-xl font-bold">
-                  {t("home.companies.streamlinedTitle")}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {t("home.companies.streamlinedDescription")}
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Link href="/signup?type=company">
-                <Button>
-                  {t("home.companies.hireButton")}
-                  <ArrowRight
-                    className={`${dir === "rtl" ? "mr-2" : "ml-2"} h-4 w-4`}
-                  />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
+          </section>
+        </ParallaxSection>
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto   px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">

@@ -5,6 +5,12 @@ import { ArrowRight, Check, Code, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import {
+  CardAnimation,
+  FadeUpSection,
+  StaggeredCards,
+  TextReveal
+} from "@/components/ui/animations";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -46,16 +52,22 @@ export default function PricingPage() {
       <Navbar />
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container mx-auto     px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  {t("pricing.title")}
-                </h1>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed dark:text-gray-400">
-                  {t("pricing.subtitle")}
-                </p>
-              </div>
+              <FadeUpSection>
+                <div className="space-y-2">
+                  <TextReveal>
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                      {t("pricing.title")}
+                    </h1>
+                  </TextReveal>
+                  <TextReveal delay={0.2}>
+                    <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed dark:text-gray-400">
+                      {t("pricing.subtitle")}
+                    </p>
+                  </TextReveal>
+                </div>
+              </FadeUpSection>
             </div>
             <div className="mx-auto mt-8 flex w-full max-w-7xl flex-col items-center space-y-4">
               <Tabs defaultValue="companies" className="w-full">
@@ -68,238 +80,256 @@ export default function PricingPage() {
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value="companies" className="mt-6">
-                  <div className="grid gap-6 lg:grid-cols-3">
-                    <Card className="flex flex-col">
-                      <CardHeader>
-                        <CardTitle>{t("pricing.plans.basic.title")}</CardTitle>
-                        <CardDescription>
-                          {t("pricing.plans.basic.description")}
-                        </CardDescription>
-                        <div className="mt-4 text-4xl font-bold">
-                          {t("pricing.plans.basic.price")}
-                          <span className="text-sm font-normal text-muted-foreground">
-                            {t("pricing.plans.basic.period")}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-2">
-                          {t("pricing.plans.basic.features").map(
-                            (feature: string, index: number) => (
-                              <li key={index} className="flex items-center">
-                                <Check
-                                  className={`${
-                                    dir === "rtl" ? "ml-2" : "mr-2"
-                                  } h-4 w-4 text-primary`}
-                                />
-                                <span>{feature}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full">
-                          {t("pricing.plans.basic.cta")}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                    <Card className="flex flex-col border-primary">
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <CardTitle>
-                            {t("pricing.plans.professional.title")}
-                          </CardTitle>
-                          <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">
-                            {t("pricing.plans.professional.badge")}
-                          </span>
-                        </div>
-                        <CardDescription>
-                          {t("pricing.plans.professional.description")}
-                        </CardDescription>
-                        <div className="mt-4 text-4xl font-bold">
-                          {t("pricing.plans.professional.price")}
-                          <span className="text-sm font-normal text-muted-foreground">
-                            {t("pricing.plans.professional.period")}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-2">
-                          {t("pricing.plans.professional.features").map(
-                            (feature: string, index: number) => (
-                              <li key={index} className="flex items-center">
-                                <Check
-                                  className={`${
-                                    dir === "rtl" ? "ml-2" : "mr-2"
-                                  } h-4 w-4 text-primary`}
-                                />
-                                <span>{feature}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full">
-                          {t("pricing.plans.professional.cta")}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                    <Card className="flex flex-col">
-                      <CardHeader>
-                        <CardTitle>
-                          {t("pricing.plans.enterprise.title")}
-                        </CardTitle>
-                        <CardDescription>
-                          {t("pricing.plans.enterprise.description")}
-                        </CardDescription>
-                        <div className="mt-4 text-4xl font-bold">
-                          {t("pricing.plans.enterprise.price")}
-                          <span className="text-sm font-normal text-muted-foreground">
-                            {t("pricing.plans.enterprise.period")}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-2">
-                          {t("pricing.plans.enterprise.features").map(
-                            (feature: string, index: number) => (
-                              <li key={index} className="flex items-center">
-                                <Check
-                                  className={`${
-                                    dir === "rtl" ? "ml-2" : "mr-2"
-                                  } h-4 w-4 text-primary`}
-                                />
-                                <span>{feature}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full">
-                          {t("pricing.plans.enterprise.cta")}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </div>
+                  <StaggeredCards>
+                    <div className="grid gap-6 lg:grid-cols-3">
+                      <CardAnimation>
+                        <Card className="flex flex-col">
+                          <CardHeader>
+                            <CardTitle>{t("pricing.plans.basic.title")}</CardTitle>
+                            <CardDescription>
+                              {t("pricing.plans.basic.description")}
+                            </CardDescription>
+                            <div className="mt-4 text-4xl font-bold">
+                              {t("pricing.plans.basic.price")}
+                              <span className="text-sm font-normal text-muted-foreground">
+                                {t("pricing.plans.basic.period")}
+                              </span>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="flex-1">
+                            <ul className="space-y-2">
+                              {t("pricing.plans.basic.features").map(
+                                (feature: string, index: number) => (
+                                  <li key={index} className="flex items-center">
+                                    <Check
+                                      className={`${
+                                        dir === "rtl" ? "ml-2" : "mr-2"
+                                      } h-4 w-4 text-primary`}
+                                    />
+                                    <span>{feature}</span>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </CardContent>
+                          <CardFooter>
+                            <Button className="w-full">
+                              {t("pricing.plans.basic.cta")}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </CardAnimation>
+                      <CardAnimation>
+                        <Card className="flex flex-col border-primary">
+                          <CardHeader>
+                            <div className="flex items-center justify-between">
+                              <CardTitle>
+                                {t("pricing.plans.professional.title")}
+                              </CardTitle>
+                              <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">
+                                {t("pricing.plans.professional.badge")}
+                              </span>
+                            </div>
+                            <CardDescription>
+                              {t("pricing.plans.professional.description")}
+                            </CardDescription>
+                            <div className="mt-4 text-4xl font-bold">
+                              {t("pricing.plans.professional.price")}
+                              <span className="text-sm font-normal text-muted-foreground">
+                                {t("pricing.plans.professional.period")}
+                              </span>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="flex-1">
+                            <ul className="space-y-2">
+                              {t("pricing.plans.professional.features").map(
+                                (feature: string, index: number) => (
+                                  <li key={index} className="flex items-center">
+                                    <Check
+                                      className={`${
+                                        dir === "rtl" ? "ml-2" : "mr-2"
+                                      } h-4 w-4 text-primary`}
+                                    />
+                                    <span>{feature}</span>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </CardContent>
+                          <CardFooter>
+                            <Button className="w-full">
+                              {t("pricing.plans.professional.cta")}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </CardAnimation>
+                      <CardAnimation>
+                        <Card className="flex flex-col">
+                          <CardHeader>
+                            <CardTitle>
+                              {t("pricing.plans.enterprise.title")}
+                            </CardTitle>
+                            <CardDescription>
+                              {t("pricing.plans.enterprise.description")}
+                            </CardDescription>
+                            <div className="mt-4 text-4xl font-bold">
+                              {t("pricing.plans.enterprise.price")}
+                              <span className="text-sm font-normal text-muted-foreground">
+                                {t("pricing.plans.enterprise.period")}
+                              </span>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="flex-1">
+                            <ul className="space-y-2">
+                              {t("pricing.plans.enterprise.features").map(
+                                (feature: string, index: number) => (
+                                  <li key={index} className="flex items-center">
+                                    <Check
+                                      className={`${
+                                        dir === "rtl" ? "ml-2" : "mr-2"
+                                      } h-4 w-4 text-primary`}
+                                    />
+                                    <span>{feature}</span>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </CardContent>
+                          <CardFooter>
+                            <Button className="w-full">
+                              {t("pricing.plans.enterprise.cta")}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </CardAnimation>
+                    </div>
+                  </StaggeredCards>
                 </TabsContent>
                 <TabsContent value="developers" className="mt-6">
-                  <div className="grid gap-6 lg:grid-cols-3">
-                    <Card className="flex flex-col">
-                      <CardHeader>
-                        <CardTitle>{t("pricing.plans.free.title")}</CardTitle>
-                        <CardDescription>
-                          {t("pricing.plans.free.description")}
-                        </CardDescription>
-                        <div className="mt-4 text-4xl font-bold">
-                          {t("pricing.plans.free.price")}
-                          <span className="text-sm font-normal text-muted-foreground">
-                            {t("pricing.plans.free.period")}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-2">
-                          {t("pricing.plans.free.features").map(
-                            (feature: string, index: number) => (
-                              <li key={index} className="flex items-center">
-                                <Check
-                                  className={`${
-                                    dir === "rtl" ? "ml-2" : "mr-2"
-                                  } h-4 w-4 text-primary`}
-                                />
-                                <span>{feature}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full">
-                          {t("pricing.plans.free.cta")}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                    <Card className="flex flex-col border-primary">
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <CardTitle>{t("pricing.plans.pro.title")}</CardTitle>
-                          <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">
-                            {t("pricing.plans.pro.badge")}
-                          </span>
-                        </div>
-                        <CardDescription>
-                          {t("pricing.plans.pro.description")}
-                        </CardDescription>
-                        <div className="mt-4 text-4xl font-bold">
-                          {t("pricing.plans.pro.price")}
-                          <span className="text-sm font-normal text-muted-foreground">
-                            {t("pricing.plans.pro.period")}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-2">
-                          {t("pricing.plans.pro.features").map(
-                            (feature: string, index: number) => (
-                              <li key={index} className="flex items-center">
-                                <Check
-                                  className={`${
-                                    dir === "rtl" ? "ml-2" : "mr-2"
-                                  } h-4 w-4 text-primary`}
-                                />
-                                <span>{feature}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full">
-                          {t("pricing.plans.pro.cta")}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                    <Card className="flex flex-col">
-                      <CardHeader>
-                        <CardTitle>
-                          {t("pricing.plans.premium.title")}
-                        </CardTitle>
-                        <CardDescription>
-                          {t("pricing.plans.premium.description")}
-                        </CardDescription>
-                        <div className="mt-4 text-4xl font-bold">
-                          {t("pricing.plans.premium.price")}
-                          <span className="text-sm font-normal text-muted-foreground">
-                            {t("pricing.plans.premium.period")}
-                          </span>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-2">
-                          {t("pricing.plans.premium.features").map(
-                            (feature: string, index: number) => (
-                              <li key={index} className="flex items-center">
-                                <Check
-                                  className={`${
-                                    dir === "rtl" ? "ml-2" : "mr-2"
-                                  } h-4 w-4 text-primary`}
-                                />
-                                <span>{feature}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full">
-                          {t("pricing.plans.premium.cta")}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </div>
+                  <StaggeredCards>
+                    <div className="grid gap-6 lg:grid-cols-3">
+                      <CardAnimation>
+                        <Card className="flex flex-col">
+                          <CardHeader>
+                            <CardTitle>{t("pricing.plans.free.title")}</CardTitle>
+                            <CardDescription>
+                              {t("pricing.plans.free.description")}
+                            </CardDescription>
+                            <div className="mt-4 text-4xl font-bold">
+                              {t("pricing.plans.free.price")}
+                              <span className="text-sm font-normal text-muted-foreground">
+                                {t("pricing.plans.free.period")}
+                              </span>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="flex-1">
+                            <ul className="space-y-2">
+                              {t("pricing.plans.free.features").map(
+                                (feature: string, index: number) => (
+                                  <li key={index} className="flex items-center">
+                                    <Check
+                                      className={`${
+                                        dir === "rtl" ? "ml-2" : "mr-2"
+                                      } h-4 w-4 text-primary`}
+                                    />
+                                    <span>{feature}</span>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </CardContent>
+                          <CardFooter>
+                            <Button className="w-full">
+                              {t("pricing.plans.free.cta")}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </CardAnimation>
+                      <CardAnimation>
+                        <Card className="flex flex-col border-primary">
+                          <CardHeader>
+                            <div className="flex items-center justify-between">
+                              <CardTitle>
+                                {t("pricing.plans.pro.title")}
+                              </CardTitle>
+                              <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">
+                                {t("pricing.plans.pro.badge")}
+                              </span>
+                            </div>
+                            <CardDescription>
+                              {t("pricing.plans.pro.description")}
+                            </CardDescription>
+                            <div className="mt-4 text-4xl font-bold">
+                              {t("pricing.plans.pro.price")}
+                              <span className="text-sm font-normal text-muted-foreground">
+                                {t("pricing.plans.pro.period")}
+                              </span>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="flex-1">
+                            <ul className="space-y-2">
+                              {t("pricing.plans.pro.features").map(
+                                (feature: string, index: number) => (
+                                  <li key={index} className="flex items-center">
+                                    <Check
+                                      className={`${
+                                        dir === "rtl" ? "ml-2" : "mr-2"
+                                      } h-4 w-4 text-primary`}
+                                    />
+                                    <span>{feature}</span>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </CardContent>
+                          <CardFooter>
+                            <Button className="w-full">
+                              {t("pricing.plans.pro.cta")}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </CardAnimation>
+                      <CardAnimation>
+                        <Card className="flex flex-col">
+                          <CardHeader>
+                            <CardTitle>
+                              {t("pricing.plans.premium.title")}
+                            </CardTitle>
+                            <CardDescription>
+                              {t("pricing.plans.premium.description")}
+                            </CardDescription>
+                            <div className="mt-4 text-4xl font-bold">
+                              {t("pricing.plans.premium.price")}
+                              <span className="text-sm font-normal text-muted-foreground">
+                                {t("pricing.plans.premium.period")}
+                              </span>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="flex-1">
+                            <ul className="space-y-2">
+                              {t("pricing.plans.premium.features").map(
+                                (feature: string, index: number) => (
+                                  <li key={index} className="flex items-center">
+                                    <Check
+                                      className={`${
+                                        dir === "rtl" ? "ml-2" : "mr-2"
+                                      } h-4 w-4 text-primary`}
+                                    />
+                                    <span>{feature}</span>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </CardContent>
+                          <CardFooter>
+                            <Button className="w-full">
+                              {t("pricing.plans.premium.cta")}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      </CardAnimation>
+                    </div>
+                  </StaggeredCards>
                 </TabsContent>
               </Tabs>
             </div>
