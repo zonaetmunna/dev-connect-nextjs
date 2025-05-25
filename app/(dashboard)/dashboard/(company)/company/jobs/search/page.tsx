@@ -1,26 +1,52 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Briefcase, Code, Filter, MapPin, Search, SlidersHorizontal } from "lucide-react"
+import {
+  Briefcase,
+  Filter,
+  MapPin,
+  Search,
+  SlidersHorizontal
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Slider } from "@/components/ui/slider"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Slider } from "@/components/ui/slider";
 
 export default function JobSearchPage() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [jobType, setJobType] = useState<string[]>([])
-  const [location, setLocation] = useState("")
-  const [experienceLevel, setExperienceLevel] = useState("")
-  const [salaryRange, setSalaryRange] = useState([0, 200000])
+  const [searchQuery, setSearchQuery] = useState("");
+  const [jobType, setJobType] = useState<string[]>([]);
+  const [location, setLocation] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState("");
+  const [salaryRange, setSalaryRange] = useState([0, 200000]);
 
   // Mock data for demonstration
   const jobListings = [
@@ -48,7 +74,8 @@ export default function JobSearchPage() {
       salary: "$80/hour",
       posted: "1 week ago",
       skills: ["Node.js", "Express", "MongoDB"],
-      description: "Join our backend team to develop scalable APIs and microservices for our growing platform...",
+      description:
+        "Join our backend team to develop scalable APIs and microservices for our growing platform...",
       experienceLevel: "Mid-Level",
     },
     {
@@ -75,7 +102,8 @@ export default function JobSearchPage() {
       salary: "$15,000 per project",
       posted: "5 days ago",
       skills: ["React Native", "iOS", "Android"],
-      description: "We need an experienced mobile developer to build a cross-platform app for our clients...",
+      description:
+        "We need an experienced mobile developer to build a cross-platform app for our clients...",
       experienceLevel: "Senior",
     },
     {
@@ -88,7 +116,8 @@ export default function JobSearchPage() {
       salary: "$70,000 - $90,000",
       posted: "1 day ago",
       skills: ["HTML", "CSS", "JavaScript", "React"],
-      description: "Great opportunity for a junior developer to join our team and grow their skills...",
+      description:
+        "Great opportunity for a junior developer to join our team and grow their skills...",
       experienceLevel: "Junior",
     },
     {
@@ -105,11 +134,15 @@ export default function JobSearchPage() {
         "Looking for a DevOps engineer to help us scale our infrastructure and improve our deployment processes...",
       experienceLevel: "Senior",
     },
-  ]
+  ];
 
   const handleJobTypeToggle = (value: string) => {
-    setJobType(jobType.includes(value) ? jobType.filter((type) => type !== value) : [...jobType, value])
-  }
+    setJobType(
+      jobType.includes(value)
+        ? jobType.filter((type) => type !== value)
+        : [...jobType, value]
+    );
+  };
 
   // Filter jobs based on search criteria
   const filteredJobs = jobListings.filter((job) => {
@@ -118,48 +151,43 @@ export default function JobSearchPage() {
       searchQuery === "" ||
       job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.skills.some((skill) => skill.toLowerCase().includes(searchQuery.toLowerCase()))
+      job.skills.some((skill) =>
+        skill.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
     // Job type filter
-    const matchesType = jobType.length === 0 || jobType.includes(job.type)
+    const matchesType = jobType.length === 0 || jobType.includes(job.type);
 
     // Location filter
-    const matchesLocation = location === "" || job.location.includes(location)
+    const matchesLocation = location === "" || job.location.includes(location);
 
     // Experience level filter
-    const matchesExperience = experienceLevel === "" || job.experienceLevel === experienceLevel
+    const matchesExperience =
+      experienceLevel === "" || job.experienceLevel === experienceLevel;
 
     // Salary range filter
-    const jobSalaryLower = Number.parseInt(job.salary.replace(/[^0-9]/g, ""))
-    const matchesSalary = jobSalaryLower >= salaryRange[0] && jobSalaryLower <= salaryRange[1]
+    const jobSalaryLower = Number.parseInt(job.salary.replace(/[^0-9]/g, ""));
+    const matchesSalary =
+      jobSalaryLower >= salaryRange[0] && jobSalaryLower <= salaryRange[1];
 
-    return matchesQuery && matchesType && matchesLocation && matchesExperience && matchesSalary
-  })
+    return (
+      matchesQuery &&
+      matchesType &&
+      matchesLocation &&
+      matchesExperience &&
+      matchesSalary
+    );
+  });
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="px-4 lg:px-6 h-16 flex items-center border-b sticky top-0 z-50 bg-background">
-        <Link className="flex items-center justify-center" href="/">
-          <Code className="h-6 w-6 mr-2" />
-          <span className="font-bold">DevConnect</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/dashboard/developer">
-            Dashboard
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/profile/developer">
-            Profile
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4 text-primary" href="/jobs/search">
-            Find Jobs
-          </Link>
-        </nav>
-      </header>
       <main className="flex-1 p-4 md:p-6">
         <div className="mx-auto max-w-7xl space-y-6">
           <div>
             <h1 className="text-3xl font-bold">Find Your Next Opportunity</h1>
-            <p className="text-muted-foreground">Search for jobs that match your skills and preferences</p>
+            <p className="text-muted-foreground">
+              Search for jobs that match your skills and preferences
+            </p>
           </div>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
@@ -180,7 +208,9 @@ export default function JobSearchPage() {
                 <SelectContent>
                   <SelectItem value="any">Any Location</SelectItem>
                   <SelectItem value="Remote">Remote</SelectItem>
-                  <SelectItem value="San Francisco">San Francisco, CA</SelectItem>
+                  <SelectItem value="San Francisco">
+                    San Francisco, CA
+                  </SelectItem>
                   <SelectItem value="New York">New York, NY</SelectItem>
                   <SelectItem value="Austin">Austin, TX</SelectItem>
                   <SelectItem value="Seattle">Seattle, WA</SelectItem>
@@ -196,7 +226,9 @@ export default function JobSearchPage() {
                 <SheetContent className="w-[300px] sm:w-[400px] overflow-auto">
                   <SheetHeader>
                     <SheetTitle>Filter Jobs</SheetTitle>
-                    <SheetDescription>Refine your job search with filters</SheetDescription>
+                    <SheetDescription>
+                      Refine your job search with filters
+                    </SheetDescription>
                   </SheetHeader>
                   <div className="py-6 space-y-6">
                     <div className="space-y-4">
@@ -206,7 +238,9 @@ export default function JobSearchPage() {
                           <Checkbox
                             id="full-time"
                             checked={jobType.includes("Full-time")}
-                            onCheckedChange={() => handleJobTypeToggle("Full-time")}
+                            onCheckedChange={() =>
+                              handleJobTypeToggle("Full-time")
+                            }
                           />
                           <Label htmlFor="full-time">Full-time</Label>
                         </div>
@@ -214,7 +248,9 @@ export default function JobSearchPage() {
                           <Checkbox
                             id="part-time"
                             checked={jobType.includes("Part-time")}
-                            onCheckedChange={() => handleJobTypeToggle("Part-time")}
+                            onCheckedChange={() =>
+                              handleJobTypeToggle("Part-time")
+                            }
                           />
                           <Label htmlFor="part-time">Part-time</Label>
                         </div>
@@ -222,7 +258,9 @@ export default function JobSearchPage() {
                           <Checkbox
                             id="contract"
                             checked={jobType.includes("Contract")}
-                            onCheckedChange={() => handleJobTypeToggle("Contract")}
+                            onCheckedChange={() =>
+                              handleJobTypeToggle("Contract")
+                            }
                           />
                           <Label htmlFor="contract">Contract</Label>
                         </div>
@@ -230,7 +268,9 @@ export default function JobSearchPage() {
                           <Checkbox
                             id="project"
                             checked={jobType.includes("Project-based")}
-                            onCheckedChange={() => handleJobTypeToggle("Project-based")}
+                            onCheckedChange={() =>
+                              handleJobTypeToggle("Project-based")
+                            }
                           />
                           <Label htmlFor="project">Project-based</Label>
                         </div>
@@ -239,7 +279,10 @@ export default function JobSearchPage() {
                     <Separator />
                     <div className="space-y-4">
                       <h3 className="text-sm font-medium">Experience Level</h3>
-                      <RadioGroup value={experienceLevel} onValueChange={setExperienceLevel}>
+                      <RadioGroup
+                        value={experienceLevel}
+                        onValueChange={setExperienceLevel}
+                      >
                         <div className="flex items-center space-x-2">
                           <RadioGroupItem value="" id="any-experience" />
                           <Label htmlFor="any-experience">Any Experience</Label>
@@ -263,7 +306,8 @@ export default function JobSearchPage() {
                       <div className="flex items-center justify-between">
                         <h3 className="text-sm font-medium">Salary Range</h3>
                         <p className="text-sm text-muted-foreground">
-                          ${salaryRange[0].toLocaleString()} - ${salaryRange[1].toLocaleString()}
+                          ${salaryRange[0].toLocaleString()} - $
+                          {salaryRange[1].toLocaleString()}
                         </p>
                       </div>
                       <Slider
@@ -278,10 +322,10 @@ export default function JobSearchPage() {
                       <Button
                         variant="outline"
                         onClick={() => {
-                          setJobType([])
-                          setLocation("")
-                          setExperienceLevel("")
-                          setSalaryRange([0, 200000])
+                          setJobType([]);
+                          setLocation("");
+                          setExperienceLevel("");
+                          setSalaryRange([0, 200000]);
                         }}
                       >
                         Reset Filters
@@ -298,7 +342,9 @@ export default function JobSearchPage() {
             </div>
           </div>
           <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">Showing {filteredJobs.length} jobs</p>
+            <p className="text-sm text-muted-foreground">
+              Showing {filteredJobs.length} jobs
+            </p>
             <Select defaultValue="recent">
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Sort by" />
@@ -340,10 +386,15 @@ export default function JobSearchPage() {
                       <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
                       <span>{job.salary}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground line-clamp-3">{job.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      {job.description}
+                    </p>
                     <div className="flex flex-wrap gap-1 mt-2">
                       {job.skills.map((skill, index) => (
-                        <span key={index} className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium">
+                        <span
+                          key={index}
+                          className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium"
+                        >
                           {skill}
                         </span>
                       ))}
@@ -352,7 +403,9 @@ export default function JobSearchPage() {
                 </CardContent>
                 <CardFooter className="border-t pt-4">
                   <div className="flex w-full items-center justify-between">
-                    <p className="text-xs text-muted-foreground">Posted {job.posted}</p>
+                    <p className="text-xs text-muted-foreground">
+                      Posted {job.posted}
+                    </p>
                     <Link href={`/jobs/${job.id}`}>
                       <Button size="sm">View Job</Button>
                     </Link>
@@ -366,7 +419,8 @@ export default function JobSearchPage() {
               <Search className="h-12 w-12 text-muted-foreground mb-4" />
               <h3 className="text-xl font-medium mb-2">No jobs found</h3>
               <p className="text-sm text-muted-foreground text-center max-w-md">
-                We couldn't find any jobs matching your search criteria. Try adjusting your filters or search query.
+                We couldn't find any jobs matching your search criteria. Try
+                adjusting your filters or search query.
               </p>
             </div>
           )}
@@ -377,23 +431,6 @@ export default function JobSearchPage() {
           )}
         </div>
       </main>
-      <footer className="border-t py-4 px-4 md:px-6">
-        <div className="container flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 DevConnect. All rights reserved.</p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="/terms">
-              Terms of Service
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/privacy">
-              Privacy
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/contact">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }
-

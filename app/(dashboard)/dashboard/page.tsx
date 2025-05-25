@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Bell, Code, LogOut, Menu, MessageSquare, Search, User } from "lucide-react"
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function DashboardPage() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Mock data for demonstration
   const jobListings = [
@@ -51,7 +54,7 @@ export default function DashboardPage() {
       salary: "$15,000 per project",
       posted: "5 days ago",
     },
-  ]
+  ];
 
   const applications = [
     {
@@ -68,14 +71,15 @@ export default function DashboardPage() {
       status: "Application Submitted",
       date: "May 10, 2025",
     },
-  ]
+  ];
 
   const messages = [
     {
       id: 1,
       from: "Sarah Johnson",
       company: "Tech Innovations Inc.",
-      preview: "Thanks for your application. We'd like to schedule an interview...",
+      preview:
+        "Thanks for your application. We'd like to schedule an interview...",
       time: "2 hours ago",
       unread: true,
     },
@@ -87,79 +91,18 @@ export default function DashboardPage() {
       time: "1 day ago",
       unread: false,
     },
-  ]
+  ];
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-72">
-            <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-lg font-semibold"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Code className="h-6 w-6" />
-                <span>DevConnect</span>
-              </Link>
-              <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <User className="h-5 w-5" />
-                <span>Profile</span>
-              </Link>
-              <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <MessageSquare className="h-5 w-5" />
-                <span>Messages</span>
-              </Link>
-              <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <Bell className="h-5 w-5" />
-                <span>Notifications</span>
-              </Link>
-              <Link href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <LogOut className="h-5 w-5" />
-                <span>Logout</span>
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
-        <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-          <Code className="h-6 w-6" />
-          <span>DevConnect</span>
-        </Link>
-        <div className="relative ml-auto flex-1 md:grow-0 md:w-80">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input type="search" placeholder="Search..." className="w-full rounded-lg bg-background pl-8 md:w-80" />
-        </div>
-        <nav className="hidden gap-6 md:flex">
-          <Link href="#" className="flex items-center gap-2 text-lg font-medium">
-            <User className="h-5 w-5" />
-            <span>Profile</span>
-          </Link>
-          <Link href="#" className="flex items-center gap-2 text-lg font-medium">
-            <MessageSquare className="h-5 w-5" />
-            <span>Messages</span>
-          </Link>
-          <Link href="#" className="flex items-center gap-2 text-lg font-medium">
-            <Bell className="h-5 w-5" />
-            <span>Notifications</span>
-          </Link>
-        </nav>
-        <Button variant="ghost" size="icon" className="hidden md:flex">
-          <LogOut className="h-5 w-5" />
-          <span className="sr-only">Logout</span>
-        </Button>
-      </header>
-      <main className="flex-1 p-4 md:p-6">
-        <div className="grid gap-6">
+      
+      <main className="flex-1  p-4 md:p-6">
+        <div className="grid gap-6 mx-auto max-w-7xl  ">
           <div>
             <h1 className="text-3xl font-bold">Welcome back, John!</h1>
-            <p className="text-muted-foreground">Here's what's happening with your job search.</p>
+            <p className="text-muted-foreground">
+              Here's what's happening with your job search.
+            </p>
           </div>
           <Tabs defaultValue="jobs">
             <TabsList className="grid w-full grid-cols-3">
@@ -231,7 +174,9 @@ export default function DashboardPage() {
                           <span className="text-sm">{application.status}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">Date Applied:</span>
+                          <span className="text-sm font-medium">
+                            Date Applied:
+                          </span>
                           <span className="text-sm">{application.date}</span>
                         </div>
                       </div>
@@ -251,14 +196,19 @@ export default function DashboardPage() {
               </div>
               <div className="grid gap-4">
                 {messages.map((message) => (
-                  <Card key={message.id} className={message.unread ? "border-primary" : ""}>
+                  <Card
+                    key={message.id}
+                    className={message.unread ? "border-primary" : ""}
+                  >
                     <CardHeader>
                       <CardTitle>{message.from}</CardTitle>
                       <CardDescription>{message.company}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm">{message.preview}</p>
-                      <p className="text-xs text-muted-foreground mt-2">{message.time}</p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        {message.time}
+                      </p>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline">View</Button>
@@ -271,23 +221,7 @@ export default function DashboardPage() {
           </Tabs>
         </div>
       </main>
-      <footer className="border-t py-4 px-4 md:px-6">
-        <div className="container flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 DevConnect. All rights reserved.</p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Terms of Service
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Privacy
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
+      
     </div>
-  )
+  );
 }
-

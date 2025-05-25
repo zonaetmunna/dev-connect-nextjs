@@ -1,39 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import {
-  Bell,
-  Briefcase,
-  Calendar,
-  Code,
-  Filter,
-  LogOut,
-  Menu,
-  MessageSquare,
-  Search,
-  Settings,
-  User,
-} from "lucide-react"
+import { Calendar, Filter } from "lucide-react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function DeveloperDashboardPage() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
   // Mock data for demonstration
   const jobListings = [
     {
@@ -57,7 +45,8 @@ export default function DeveloperDashboardPage() {
       salary: "$80/hour",
       posted: "1 week ago",
       skills: ["Node.js", "Express", "MongoDB"],
-      description: "Join our backend team to develop scalable APIs and microservices for our growing platform...",
+      description:
+        "Join our backend team to develop scalable APIs and microservices for our growing platform...",
     },
     {
       id: 3,
@@ -80,9 +69,10 @@ export default function DeveloperDashboardPage() {
       salary: "$15,000 per project",
       posted: "5 days ago",
       skills: ["React Native", "iOS", "Android"],
-      description: "We need an experienced mobile developer to build a cross-platform app for our clients...",
+      description:
+        "We need an experienced mobile developer to build a cross-platform app for our clients...",
     },
-  ]
+  ];
 
   const applications = [
     {
@@ -109,14 +99,15 @@ export default function DeveloperDashboardPage() {
       date: "April 28, 2025",
       nextStep: "Application closed",
     },
-  ]
+  ];
 
   const messages = [
     {
       id: 1,
       from: "Sarah Johnson",
       company: "Tech Innovations Inc.",
-      preview: "Thanks for your application. We'd like to schedule an interview...",
+      preview:
+        "Thanks for your application. We'd like to schedule an interview...",
       time: "2 hours ago",
       unread: true,
     },
@@ -132,11 +123,12 @@ export default function DeveloperDashboardPage() {
       id: 3,
       from: "Emily Rodriguez",
       company: "StartupXYZ",
-      preview: "We've reviewed your application and would like to move forward...",
+      preview:
+        "We've reviewed your application and would like to move forward...",
       time: "3 days ago",
       unread: false,
     },
-  ]
+  ];
 
   const upcomingInterviews = [
     {
@@ -157,205 +149,69 @@ export default function DeveloperDashboardPage() {
       type: "Initial Screening",
       with: "HR Team",
     },
-  ]
+  ];
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-72">
-            <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href="/"
-                className="flex items-center gap-2 text-lg font-semibold"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Code className="h-6 w-6" />
-                <span>DevConnect</span>
-              </Link>
-              <Link
-                href="/dashboard/developer"
-                className="flex items-center gap-2 text-primary"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Briefcase className="h-5 w-5" />
-                <span>Dashboard</span>
-              </Link>
-              <Link
-                href="/profile/developer"
-                className="flex items-center gap-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <User className="h-5 w-5" />
-                <span>Profile</span>
-              </Link>
-              <Link href="/messages" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <MessageSquare className="h-5 w-5" />
-                <span>Messages</span>
-              </Link>
-              <Link href="/calendar" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <Calendar className="h-5 w-5" />
-                <span>Calendar</span>
-              </Link>
-              <Link href="/settings" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <Settings className="h-5 w-5" />
-                <span>Settings</span>
-              </Link>
-              <Link href="/signin" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <LogOut className="h-5 w-5" />
-                <span>Logout</span>
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
-        <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
-          <Code className="h-6 w-6" />
-          <span>DevConnect</span>
-        </Link>
-        <div className="relative ml-auto flex-1 md:grow-0 md:w-80">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search jobs, companies..."
-            className="w-full rounded-lg bg-background pl-8 md:w-80"
-          />
-        </div>
-        <nav className="hidden gap-6 md:flex">
-          <Link href="/dashboard/developer" className="flex items-center gap-2 text-lg font-medium text-primary">
-            <Briefcase className="h-5 w-5" />
-            <span>Dashboard</span>
-          </Link>
-          <Link href="/profile/developer" className="flex items-center gap-2 text-lg font-medium">
-            <User className="h-5 w-5" />
-            <span>Profile</span>
-          </Link>
-          <Link href="/messages" className="flex items-center gap-2 text-lg font-medium">
-            <MessageSquare className="h-5 w-5" />
-            <span>Messages</span>
-          </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
-                  3
-                </span>
-                <span className="sr-only">Notifications</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-80">
-              <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <div className="max-h-96 overflow-auto">
-                <DropdownMenuItem className="flex flex-col items-start p-4">
-                  <div className="font-medium">New message from Tech Innovations Inc.</div>
-                  <div className="text-sm text-muted-foreground">2 hours ago</div>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="flex flex-col items-start p-4">
-                  <div className="font-medium">Your application was viewed by StartupXYZ</div>
-                  <div className="text-sm text-muted-foreground">Yesterday</div>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="flex flex-col items-start p-4">
-                  <div className="font-medium">Interview scheduled with DataFlow Systems</div>
-                  <div className="text-sm text-muted-foreground">2 days ago</div>
-                </DropdownMenuItem>
-              </div>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="flex justify-center">
-                <Button variant="ghost" className="w-full">
-                  View All
-                </Button>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </nav>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-full border h-8 w-8 md:h-10 md:w-10">
-              <img
-                src="/placeholder.svg?height=40&width=40"
-                width="40"
-                height="40"
-                className="rounded-full"
-                alt="Avatar"
-              />
-              <span className="sr-only">Toggle user menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/profile/developer" className="flex w-full">
-                Profile
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/settings" className="flex w-full">
-                Settings
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/billing" className="flex w-full">
-                Billing
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/signin" className="flex w-full">
-                Logout
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </header>
       <main className="flex-1 p-4 md:p-6">
         <div className="grid gap-6">
           <div>
             <h1 className="text-3xl font-bold">Welcome back, John!</h1>
-            <p className="text-muted-foreground">Here's what's happening with your job search.</p>
+            <p className="text-muted-foreground">
+              Here's what's happening with your job search.
+            </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Applications
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">12</div>
-                <p className="text-xs text-muted-foreground">+3 from last month</p>
+                <p className="text-xs text-muted-foreground">
+                  +3 from last month
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Interviews Scheduled</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Interviews Scheduled
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">2</div>
-                <p className="text-xs text-muted-foreground">Next: May 20, 2025</p>
+                <p className="text-xs text-muted-foreground">
+                  Next: May 20, 2025
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Profile Views</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Profile Views
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">47</div>
-                <p className="text-xs text-muted-foreground">+12% from last week</p>
+                <p className="text-xs text-muted-foreground">
+                  +12% from last week
+                </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Unread Messages</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Unread Messages
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">3</div>
-                <p className="text-xs text-muted-foreground">2 new since yesterday</p>
+                <p className="text-xs text-muted-foreground">
+                  2 new since yesterday
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -433,14 +289,19 @@ export default function DeveloperDashboardPage() {
                           <span className="text-sm font-medium">Skills:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {job.skills.map((skill, index) => (
-                              <span key={index} className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium">
+                              <span
+                                key={index}
+                                className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium"
+                              >
                                 {skill}
                               </span>
                             ))}
                           </div>
                         </div>
                       </div>
-                      <p className="mt-4 text-sm text-gray-500">{job.description}</p>
+                      <p className="mt-4 text-sm text-gray-500">
+                        {job.description}
+                      </p>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline">View Details</Button>
@@ -470,25 +331,39 @@ export default function DeveloperDashboardPage() {
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-medium">Status:</span>
                           <span
-                            className={`text-sm ${application.status === "Rejected" ? "text-destructive" : application.status === "Interview Scheduled" ? "text-green-500" : ""}`}
+                            className={`text-sm ${
+                              application.status === "Rejected"
+                                ? "text-destructive"
+                                : application.status === "Interview Scheduled"
+                                ? "text-green-500"
+                                : ""
+                            }`}
                           >
                             {application.status}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">Date Applied:</span>
+                          <span className="text-sm font-medium">
+                            Date Applied:
+                          </span>
                           <span className="text-sm">{application.date}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">Next Step:</span>
-                          <span className="text-sm">{application.nextStep}</span>
+                          <span className="text-sm font-medium">
+                            Next Step:
+                          </span>
+                          <span className="text-sm">
+                            {application.nextStep}
+                          </span>
                         </div>
                       </div>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline">View Details</Button>
                       <Button disabled={application.status === "Rejected"}>
-                        {application.status === "Rejected" ? "Closed" : "Check Status"}
+                        {application.status === "Rejected"
+                          ? "Closed"
+                          : "Check Status"}
                       </Button>
                     </CardFooter>
                   </Card>
@@ -502,7 +377,10 @@ export default function DeveloperDashboardPage() {
               </div>
               <div className="grid gap-4">
                 {messages.map((message) => (
-                  <Card key={message.id} className={message.unread ? "border-primary" : ""}>
+                  <Card
+                    key={message.id}
+                    className={message.unread ? "border-primary" : ""}
+                  >
                     <CardHeader>
                       <div className="flex items-center justify-between">
                         <div>
@@ -518,7 +396,9 @@ export default function DeveloperDashboardPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm">{message.preview}</p>
-                      <p className="text-xs text-muted-foreground mt-2">{message.time}</p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        {message.time}
+                      </p>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline">View</Button>
@@ -575,9 +455,12 @@ export default function DeveloperDashboardPage() {
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-10">
                     <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
-                    <h3 className="text-xl font-medium mb-2">No Upcoming Interviews</h3>
+                    <h3 className="text-xl font-medium mb-2">
+                      No Upcoming Interviews
+                    </h3>
                     <p className="text-sm text-muted-foreground text-center max-w-md">
-                      You don't have any interviews scheduled at the moment. Keep applying to jobs and check back later.
+                      You don't have any interviews scheduled at the moment.
+                      Keep applying to jobs and check back later.
                     </p>
                   </CardContent>
                 </Card>
@@ -588,21 +471,31 @@ export default function DeveloperDashboardPage() {
       </main>
       <footer className="border-t py-4 px-4 md:px-6">
         <div className="container flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 DevConnect. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">
+            © 2025 DevConnect. All rights reserved.
+          </p>
           <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="/terms">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/terms"
+            >
               Terms of Service
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/privacy">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/privacy"
+            >
               Privacy
             </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/contact">
+            <Link
+              className="text-xs hover:underline underline-offset-4"
+              href="/contact"
+            >
               Contact
             </Link>
           </nav>
         </div>
       </footer>
     </div>
-  )
+  );
 }
-

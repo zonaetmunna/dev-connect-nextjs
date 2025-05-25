@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import { Code, Globe, Mail, MapPin, Plus, Users } from "lucide-react"
-import Link from "next/link"
+import { Globe, Mail, MapPin, Plus, Users } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function CompanyProfilePage() {
   // Mock data for demonstration
@@ -89,29 +95,12 @@ export default function CompanyProfilePage() {
         date: "February 28, 2025",
       },
     ],
-  }
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold">
-          <Code className="h-6 w-6" />
-          <span>DevConnect</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 md:gap-6">
-          <Link href="/dashboard" className="text-sm font-medium">
-            Dashboard
-          </Link>
-          <Link href="/profile/company" className="text-sm font-medium text-primary">
-            Profile
-          </Link>
-          <Link href="/messages" className="text-sm font-medium">
-            Messages
-          </Link>
-        </nav>
-      </header>
       <main className="flex-1 p-4 md:p-6">
-        <div className="mx-auto max-w-4xl space-y-8">
+        <div className="mx-auto max-w-7xl space-y-8">
           <div className="flex flex-col md:flex-row gap-6">
             <div className="md:w-1/3">
               <Card>
@@ -192,7 +181,9 @@ export default function CompanyProfilePage() {
                           <span className="text-sm">{position.posted}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">Applicants:</span>
+                          <span className="text-sm font-medium">
+                            Applicants:
+                          </span>
                           <span className="text-sm">{position.applicants}</span>
                         </div>
                       </CardContent>
@@ -213,12 +204,17 @@ export default function CompanyProfilePage() {
                   <Card>
                     <CardHeader>
                       <CardTitle>Meet Our Team</CardTitle>
-                      <CardDescription>The people behind {companyData.name}</CardDescription>
+                      <CardDescription>
+                        The people behind {companyData.name}
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                         {companyData.team.map((member, index) => (
-                          <div key={index} className="flex flex-col items-center text-center">
+                          <div
+                            key={index}
+                            className="flex flex-col items-center text-center"
+                          >
                             <div className="mb-2 h-16 w-16 overflow-hidden rounded-full">
                               <img
                                 alt={member.name}
@@ -227,7 +223,9 @@ export default function CompanyProfilePage() {
                               />
                             </div>
                             <h3 className="font-medium">{member.name}</h3>
-                            <p className="text-xs text-muted-foreground">{member.title}</p>
+                            <p className="text-xs text-muted-foreground">
+                              {member.title}
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -250,14 +248,18 @@ export default function CompanyProfilePage() {
                             <CardDescription>{review.role}</CardDescription>
                           </div>
                           <div className="flex items-center">
-                            <span className="text-sm font-medium mr-1">{review.rating}</span>
+                            <span className="text-sm font-medium mr-1">
+                              {review.rating}
+                            </span>
                             <span className="text-yellow-400">★</span>
                           </div>
                         </div>
                       </CardHeader>
                       <CardContent>
                         <p className="text-sm">{review.text}</p>
-                        <p className="text-xs text-muted-foreground mt-2">{review.date}</p>
+                        <p className="text-xs text-muted-foreground mt-2">
+                          {review.date}
+                        </p>
                       </CardContent>
                     </Card>
                   ))}
@@ -273,23 +275,6 @@ export default function CompanyProfilePage() {
           </div>
         </div>
       </main>
-      <footer className="border-t py-4 px-4 md:px-6">
-        <div className="container flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 DevConnect. All rights reserved.</p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Terms of Service
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Privacy
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }
-

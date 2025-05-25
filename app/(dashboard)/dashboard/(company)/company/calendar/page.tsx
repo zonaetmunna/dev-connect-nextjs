@@ -1,13 +1,19 @@
-"use client"
+"use client";
 
-import { format } from "date-fns"
-import { CalendarIcon, Code, Plus } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
+import { format } from "date-fns";
+import { CalendarIcon, Plus } from "lucide-react";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -16,16 +22,28 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function CalendarPage() {
-  const [date, setDate] = useState<Date>(new Date())
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
+  const [date, setDate] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date()
+  );
 
   // Mock data for demonstration
   const events = [
@@ -59,41 +77,27 @@ export default function CalendarPage() {
       description:
         "Follow-up interview to discuss the technical test you completed for the Full Stack Developer position.",
     },
-  ]
+  ];
 
   // Get events for the selected date
   const selectedDateEvents = events.filter(
-    (event) => selectedDate && event.date.toDateString() === selectedDate.toDateString(),
-  )
+    (event) =>
+      selectedDate && event.date.toDateString() === selectedDate.toDateString()
+  );
 
   // Get all dates with events
-  const eventDates = events.map((event) => event.date.toDateString())
+  const eventDates = events.map((event) => event.date.toDateString());
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="px-4 lg:px-6 h-16 flex items-center border-b sticky top-0 z-50 bg-background">
-        <Link className="flex items-center justify-center" href="/">
-          <Code className="h-6 w-6 mr-2" />
-          <span className="font-bold">DevConnect</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/dashboard/developer">
-            Dashboard
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/profile/developer">
-            Profile
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4 text-primary" href="/calendar">
-            Calendar
-          </Link>
-        </nav>
-      </header>
       <main className="flex-1 p-4 md:p-6">
-        <div className="mx-auto max-w-6xl space-y-6">
+        <div className="mx-auto max-w-7xl space-y-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold">Calendar</h1>
-              <p className="text-muted-foreground">Manage your interviews and events</p>
+              <p className="text-muted-foreground">
+                Manage your interviews and events
+              </p>
             </div>
             <div className="flex items-center gap-2">
               <Popover>
@@ -122,25 +126,40 @@ export default function CalendarPage() {
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Add New Event</DialogTitle>
-                    <DialogDescription>Create a new event or interview in your calendar</DialogDescription>
+                    <DialogDescription>
+                      Create a new event or interview in your calendar
+                    </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4 py-4">
                     <div className="space-y-2">
                       <Label htmlFor="event-title">Event Title</Label>
-                      <Input id="event-title" placeholder="e.g., Interview with Company X" />
+                      <Input
+                        id="event-title"
+                        placeholder="e.g., Interview with Company X"
+                      />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="event-date">Date</Label>
                         <Popover>
                           <PopoverTrigger asChild>
-                            <Button variant="outline" className="w-full justify-start text-left font-normal">
+                            <Button
+                              variant="outline"
+                              className="w-full justify-start text-left font-normal"
+                            >
                               <CalendarIcon className="mr-2 h-4 w-4" />
-                              {selectedDate ? format(selectedDate, "PPP") : "Select date"}
+                              {selectedDate
+                                ? format(selectedDate, "PPP")
+                                : "Select date"}
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0">
-                            <Calendar mode="single" selected={selectedDate} onSelect={setSelectedDate} initialFocus />
+                            <Calendar
+                              mode="single"
+                              selected={selectedDate}
+                              onSelect={setSelectedDate}
+                              initialFocus
+                            />
                           </PopoverContent>
                         </Popover>
                       </div>
@@ -153,7 +172,9 @@ export default function CalendarPage() {
                           <SelectContent>
                             <SelectItem value="interview">Interview</SelectItem>
                             <SelectItem value="screening">Screening</SelectItem>
-                            <SelectItem value="technical-test">Technical Test</SelectItem>
+                            <SelectItem value="technical-test">
+                              Technical Test
+                            </SelectItem>
                             <SelectItem value="meeting">Meeting</SelectItem>
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
@@ -173,10 +194,10 @@ export default function CalendarPage() {
                                 {hour === 0
                                   ? "12:00 AM"
                                   : hour < 12
-                                    ? `${hour}:00 AM`
-                                    : hour === 12
-                                      ? "12:00 PM"
-                                      : `${hour - 12}:00 PM`}
+                                  ? `${hour}:00 AM`
+                                  : hour === 12
+                                  ? "12:00 PM"
+                                  : `${hour - 12}:00 PM`}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -194,10 +215,10 @@ export default function CalendarPage() {
                                 {hour === 0
                                   ? "12:00 AM"
                                   : hour < 12
-                                    ? `${hour}:00 AM`
-                                    : hour === 12
-                                      ? "12:00 PM"
-                                      : `${hour - 12}:00 PM`}
+                                  ? `${hour}:00 AM`
+                                  : hour === 12
+                                  ? "12:00 PM"
+                                  : `${hour - 12}:00 PM`}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -206,7 +227,10 @@ export default function CalendarPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="event-description">Description</Label>
-                      <Textarea id="event-description" placeholder="Add details about the event..." />
+                      <Textarea
+                        id="event-description"
+                        placeholder="Add details about the event..."
+                      />
                     </div>
                   </div>
                   <DialogFooter>
@@ -229,7 +253,8 @@ export default function CalendarPage() {
                   onSelect={setSelectedDate}
                   className="rounded-md border"
                   modifiers={{
-                    hasEvent: (date) => eventDates.includes(date.toDateString()),
+                    hasEvent: (date) =>
+                      eventDates.includes(date.toDateString()),
                   }}
                   modifiersStyles={{
                     hasEvent: { backgroundColor: "hsl(var(--primary) / 0.1)" },
@@ -245,11 +270,17 @@ export default function CalendarPage() {
             </Card>
             <Card className="md:col-span-2">
               <CardHeader>
-                <CardTitle>{selectedDate ? format(selectedDate, "EEEE, MMMM d, yyyy") : "No date selected"}</CardTitle>
+                <CardTitle>
+                  {selectedDate
+                    ? format(selectedDate, "EEEE, MMMM d, yyyy")
+                    : "No date selected"}
+                </CardTitle>
                 <CardDescription>
                   {selectedDateEvents.length === 0
                     ? "No events scheduled for this day"
-                    : `${selectedDateEvents.length} event${selectedDateEvents.length === 1 ? "" : "s"} scheduled`}
+                    : `${selectedDateEvents.length} event${
+                        selectedDateEvents.length === 1 ? "" : "s"
+                      } scheduled`}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -258,7 +289,8 @@ export default function CalendarPage() {
                     <CalendarIcon className="h-12 w-12 text-muted-foreground mb-4" />
                     <h3 className="text-xl font-medium mb-2">No Events</h3>
                     <p className="text-sm text-muted-foreground max-w-md">
-                      There are no events scheduled for this day. Click the "Add Event" button to create a new event.
+                      There are no events scheduled for this day. Click the "Add
+                      Event" button to create a new event.
                     </p>
                   </div>
                 ) : (
@@ -279,9 +311,12 @@ export default function CalendarPage() {
                         <CardContent>
                           <div className="space-y-2">
                             <div className="text-sm">
-                              <span className="font-medium">With:</span> {event.with}
+                              <span className="font-medium">With:</span>{" "}
+                              {event.with}
                             </div>
-                            <p className="text-sm text-muted-foreground">{event.description}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {event.description}
+                            </p>
                           </div>
                         </CardContent>
                         <CardFooter className="flex justify-between">
@@ -302,7 +337,9 @@ export default function CalendarPage() {
           <Card>
             <CardHeader>
               <CardTitle>Upcoming Events</CardTitle>
-              <CardDescription>Your scheduled interviews and events</CardDescription>
+              <CardDescription>
+                Your scheduled interviews and events
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -311,12 +348,18 @@ export default function CalendarPage() {
                   .map((event) => (
                     <div key={event.id} className="flex items-start gap-4">
                       <div className="min-w-24 text-center">
-                        <div className="font-medium">{format(event.date, "MMM d")}</div>
-                        <div className="text-sm text-muted-foreground">{format(event.date, "EEEE")}</div>
+                        <div className="font-medium">
+                          {format(event.date, "MMM d")}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {format(event.date, "EEEE")}
+                        </div>
                       </div>
                       <div className="flex-1">
                         <div className="font-medium">{event.title}</div>
-                        <div className="text-sm text-muted-foreground">{event.time}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {event.time}
+                        </div>
                       </div>
                       <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
                         {event.type}
@@ -328,23 +371,6 @@ export default function CalendarPage() {
           </Card>
         </div>
       </main>
-      <footer className="border-t py-4 px-4 md:px-6">
-        <div className="container flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 DevConnect. All rights reserved.</p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="/terms">
-              Terms of Service
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/privacy">
-              Privacy
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/contact">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }
-

@@ -1,17 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Code, Plus, Save, Trash2, Upload } from "lucide-react"
+import { Plus, Save, Trash2, Upload } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function ProfileEditPage() {
   // Mock data for demonstration
@@ -21,7 +34,7 @@ export default function ProfileEditPage() {
     { name: "TypeScript", level: 85 },
     { name: "Python", level: 80 },
     { name: "GraphQL", level: 75 },
-  ])
+  ]);
 
   const [experiences, setExperiences] = useState([
     {
@@ -48,7 +61,7 @@ export default function ProfileEditPage() {
       description:
         "Created responsive web applications with modern JavaScript frameworks. Collaborated with designers to implement pixel-perfect UIs.",
     },
-  ])
+  ]);
 
   const [education, setEducation] = useState([
     {
@@ -63,7 +76,7 @@ export default function ProfileEditPage() {
       institution: "University of California, Berkeley",
       year: "2015",
     },
-  ])
+  ]);
 
   const [projects, setProjects] = useState([
     {
@@ -80,114 +93,109 @@ export default function ProfileEditPage() {
         "Developed a collaborative task management application with real-time updates using WebSockets. Features include task assignment, progress tracking, and file sharing.",
       technologies: ["React", "Express", "Socket.io", "PostgreSQL"],
     },
-  ])
+  ]);
 
-  const [newSkill, setNewSkill] = useState({ name: "", level: 50 })
+  const [newSkill, setNewSkill] = useState({ name: "", level: 50 });
   const [newExperience, setNewExperience] = useState({
     title: "",
     company: "",
     period: "",
     description: "",
-  })
+  });
   const [newEducation, setNewEducation] = useState({
     degree: "",
     institution: "",
     year: "",
-  })
+  });
   const [newProject, setNewProject] = useState({
     name: "",
     description: "",
     technologies: "",
-  })
+  });
 
   const handleAddSkill = () => {
-    if (newSkill.name.trim() === "") return
-    setSkills([...skills, { ...newSkill }])
-    setNewSkill({ name: "", level: 50 })
-  }
+    if (newSkill.name.trim() === "") return;
+    setSkills([...skills, { ...newSkill }]);
+    setNewSkill({ name: "", level: 50 });
+  };
 
   const handleRemoveSkill = (index: number) => {
-    setSkills(skills.filter((_, i) => i !== index))
-  }
+    setSkills(skills.filter((_, i) => i !== index));
+  };
 
   const handleAddExperience = () => {
-    if (newExperience.title.trim() === "" || newExperience.company.trim() === "") return
-    setExperiences([...experiences, { ...newExperience, id: experiences.length + 1 }])
+    if (
+      newExperience.title.trim() === "" ||
+      newExperience.company.trim() === ""
+    )
+      return;
+    setExperiences([
+      ...experiences,
+      { ...newExperience, id: experiences.length + 1 },
+    ]);
     setNewExperience({
       title: "",
       company: "",
       period: "",
       description: "",
-    })
-  }
+    });
+  };
 
   const handleRemoveExperience = (id: number) => {
-    setExperiences(experiences.filter((exp) => exp.id !== id))
-  }
+    setExperiences(experiences.filter((exp) => exp.id !== id));
+  };
 
   const handleAddEducation = () => {
-    if (newEducation.degree.trim() === "" || newEducation.institution.trim() === "") return
-    setEducation([...education, { ...newEducation, id: education.length + 1 }])
+    if (
+      newEducation.degree.trim() === "" ||
+      newEducation.institution.trim() === ""
+    )
+      return;
+    setEducation([...education, { ...newEducation, id: education.length + 1 }]);
     setNewEducation({
       degree: "",
       institution: "",
       year: "",
-    })
-  }
+    });
+  };
 
   const handleRemoveEducation = (id: number) => {
-    setEducation(education.filter((edu) => edu.id !== id))
-  }
+    setEducation(education.filter((edu) => edu.id !== id));
+  };
 
   const handleAddProject = () => {
-    if (newProject.name.trim() === "") return
+    if (newProject.name.trim() === "") return;
     setProjects([
       ...projects,
       {
         ...newProject,
         id: projects.length + 1,
-        technologies: newProject.technologies.split(",").map((tech) => tech.trim()),
+        technologies: newProject.technologies
+          .split(",")
+          .map((tech) => tech.trim()),
       },
-    ])
+    ]);
     setNewProject({
       name: "",
       description: "",
       technologies: "",
-    })
-  }
+    });
+  };
 
   const handleRemoveProject = (id: number) => {
-    setProjects(projects.filter((project) => project.id !== id))
-  }
+    setProjects(projects.filter((project) => project.id !== id));
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="px-4 lg:px-6 h-16 flex items-center border-b sticky top-0 z-50 bg-background">
-        <Link className="flex items-center justify-center" href="/">
-          <Code className="h-6 w-6 mr-2" />
-          <span className="font-bold">DevConnect</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/dashboard/developer">
-            Dashboard
-          </Link>
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4 text-primary"
-            href="/profile/developer"
-          >
-            Profile
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/settings">
-            Settings
-          </Link>
-        </nav>
-      </header>
       <main className="flex-1 p-4 md:p-6">
-        <div className="mx-auto max-w-4xl space-y-6">
+        <div className="mx-auto max-w-7xl space-y-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold">Edit Profile</h1>
-              <p className="text-muted-foreground">Update your professional profile</p>
+              <p className="text-muted-foreground">
+                Update your professional profile
+              </p>
             </div>
             <Link href="/profile/developer">
               <Button variant="outline">Cancel</Button>
@@ -205,7 +213,9 @@ export default function ProfileEditPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Basic Information</CardTitle>
-                  <CardDescription>Update your personal and contact information</CardDescription>
+                  <CardDescription>
+                    Update your personal and contact information
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
@@ -215,7 +225,10 @@ export default function ProfileEditPage() {
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="title">Professional Title</Label>
-                      <Input id="title" defaultValue="Senior Full Stack Developer" />
+                      <Input
+                        id="title"
+                        defaultValue="Senior Full Stack Developer"
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="location">Location</Label>
@@ -242,10 +255,18 @@ export default function ProfileEditPage() {
                           <SelectValue placeholder="Select availability" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="available">Available for work</SelectItem>
-                          <SelectItem value="limited">Limited availability</SelectItem>
-                          <SelectItem value="unavailable">Not available</SelectItem>
-                          <SelectItem value="employed">Employed, open to offers</SelectItem>
+                          <SelectItem value="available">
+                            Available for work
+                          </SelectItem>
+                          <SelectItem value="limited">
+                            Limited availability
+                          </SelectItem>
+                          <SelectItem value="unavailable">
+                            Not available
+                          </SelectItem>
+                          <SelectItem value="employed">
+                            Employed, open to offers
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -287,20 +308,31 @@ export default function ProfileEditPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Social Profiles</CardTitle>
-                  <CardDescription>Connect your social media accounts</CardDescription>
+                  <CardDescription>
+                    Connect your social media accounts
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="linkedin">LinkedIn URL</Label>
-                    <Input id="linkedin" placeholder="https://linkedin.com/in/username" />
+                    <Input
+                      id="linkedin"
+                      placeholder="https://linkedin.com/in/username"
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="github">GitHub URL</Label>
-                    <Input id="github" placeholder="https://github.com/username" />
+                    <Input
+                      id="github"
+                      placeholder="https://github.com/username"
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="portfolio">Portfolio Website</Label>
-                    <Input id="portfolio" placeholder="https://yourwebsite.com" />
+                    <Input
+                      id="portfolio"
+                      placeholder="https://yourwebsite.com"
+                    />
                   </div>
                 </CardContent>
                 <CardFooter>
@@ -312,21 +344,34 @@ export default function ProfileEditPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Skills</CardTitle>
-                  <CardDescription>Add and manage your technical skills</CardDescription>
+                  <CardDescription>
+                    Add and manage your technical skills
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {skills.map((skill, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <div className="flex-1 space-y-1">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">{skill.name}</span>
-                          <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                          <span className="text-sm font-medium">
+                            {skill.name}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {skill.level}%
+                          </span>
                         </div>
                         <div className="h-2 w-full rounded-full bg-secondary">
-                          <div className="h-2 rounded-full bg-primary" style={{ width: `${skill.level}%` }} />
+                          <div
+                            className="h-2 rounded-full bg-primary"
+                            style={{ width: `${skill.level}%` }}
+                          />
                         </div>
                       </div>
-                      <Button variant="ghost" size="icon" onClick={() => handleRemoveSkill(index)}>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleRemoveSkill(index)}
+                      >
                         <Trash2 className="h-4 w-4" />
                         <span className="sr-only">Remove skill</span>
                       </Button>
@@ -342,18 +387,27 @@ export default function ProfileEditPage() {
                           id="skill-name"
                           placeholder="e.g., React, Python, AWS"
                           value={newSkill.name}
-                          onChange={(e) => setNewSkill({ ...newSkill, name: e.target.value })}
+                          onChange={(e) =>
+                            setNewSkill({ ...newSkill, name: e.target.value })
+                          }
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="skill-level">Proficiency Level ({newSkill.level}%)</Label>
+                        <Label htmlFor="skill-level">
+                          Proficiency Level ({newSkill.level}%)
+                        </Label>
                         <Input
                           id="skill-level"
                           type="range"
                           min="0"
                           max="100"
                           value={newSkill.level}
-                          onChange={(e) => setNewSkill({ ...newSkill, level: Number.parseInt(e.target.value) })}
+                          onChange={(e) =>
+                            setNewSkill({
+                              ...newSkill,
+                              level: Number.parseInt(e.target.value),
+                            })
+                          }
                         />
                       </div>
                     </div>
@@ -372,7 +426,9 @@ export default function ProfileEditPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Work Experience</CardTitle>
-                  <CardDescription>Add and manage your professional experience</CardDescription>
+                  <CardDescription>
+                    Add and manage your professional experience
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {experiences.map((exp) => (
@@ -384,7 +440,11 @@ export default function ProfileEditPage() {
                             {exp.company} • {exp.period}
                           </p>
                         </div>
-                        <Button variant="ghost" size="icon" onClick={() => handleRemoveExperience(exp.id)}>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleRemoveExperience(exp.id)}
+                        >
                           <Trash2 className="h-4 w-4" />
                           <span className="sr-only">Remove experience</span>
                         </Button>
@@ -402,7 +462,12 @@ export default function ProfileEditPage() {
                           id="job-title"
                           placeholder="e.g., Senior Developer"
                           value={newExperience.title}
-                          onChange={(e) => setNewExperience({ ...newExperience, title: e.target.value })}
+                          onChange={(e) =>
+                            setNewExperience({
+                              ...newExperience,
+                              title: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div className="space-y-2">
@@ -411,7 +476,12 @@ export default function ProfileEditPage() {
                           id="company"
                           placeholder="e.g., Tech Company Inc."
                           value={newExperience.company}
-                          onChange={(e) => setNewExperience({ ...newExperience, company: e.target.value })}
+                          onChange={(e) =>
+                            setNewExperience({
+                              ...newExperience,
+                              company: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </div>
@@ -421,7 +491,12 @@ export default function ProfileEditPage() {
                         id="period"
                         placeholder="e.g., 2020 - Present"
                         value={newExperience.period}
-                        onChange={(e) => setNewExperience({ ...newExperience, period: e.target.value })}
+                        onChange={(e) =>
+                          setNewExperience({
+                            ...newExperience,
+                            period: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -430,7 +505,12 @@ export default function ProfileEditPage() {
                         id="job-description"
                         placeholder="Describe your responsibilities and achievements..."
                         value={newExperience.description}
-                        onChange={(e) => setNewExperience({ ...newExperience, description: e.target.value })}
+                        onChange={(e) =>
+                          setNewExperience({
+                            ...newExperience,
+                            description: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <Button onClick={handleAddExperience}>
@@ -448,7 +528,9 @@ export default function ProfileEditPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Education</CardTitle>
-                  <CardDescription>Add and manage your educational background</CardDescription>
+                  <CardDescription>
+                    Add and manage your educational background
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {education.map((edu) => (
@@ -460,7 +542,11 @@ export default function ProfileEditPage() {
                             {edu.institution} • {edu.year}
                           </p>
                         </div>
-                        <Button variant="ghost" size="icon" onClick={() => handleRemoveEducation(edu.id)}>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleRemoveEducation(edu.id)}
+                        >
                           <Trash2 className="h-4 w-4" />
                           <span className="sr-only">Remove education</span>
                         </Button>
@@ -476,7 +562,12 @@ export default function ProfileEditPage() {
                         id="degree"
                         placeholder="e.g., B.S. Computer Science"
                         value={newEducation.degree}
-                        onChange={(e) => setNewEducation({ ...newEducation, degree: e.target.value })}
+                        onChange={(e) =>
+                          setNewEducation({
+                            ...newEducation,
+                            degree: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -485,7 +576,12 @@ export default function ProfileEditPage() {
                         id="institution"
                         placeholder="e.g., Stanford University"
                         value={newEducation.institution}
-                        onChange={(e) => setNewEducation({ ...newEducation, institution: e.target.value })}
+                        onChange={(e) =>
+                          setNewEducation({
+                            ...newEducation,
+                            institution: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -494,7 +590,12 @@ export default function ProfileEditPage() {
                         id="year"
                         placeholder="e.g., 2020"
                         value={newEducation.year}
-                        onChange={(e) => setNewEducation({ ...newEducation, year: e.target.value })}
+                        onChange={(e) =>
+                          setNewEducation({
+                            ...newEducation,
+                            year: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <Button onClick={handleAddEducation}>
@@ -512,16 +613,24 @@ export default function ProfileEditPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Projects</CardTitle>
-                  <CardDescription>Add and manage your portfolio projects</CardDescription>
+                  <CardDescription>
+                    Add and manage your portfolio projects
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {projects.map((project) => (
                     <div key={project.id} className="space-y-4">
                       <div className="flex items-start justify-between">
                         <div>
-                          <h3 className="text-lg font-medium">{project.name}</h3>
+                          <h3 className="text-lg font-medium">
+                            {project.name}
+                          </h3>
                         </div>
-                        <Button variant="ghost" size="icon" onClick={() => handleRemoveProject(project.id)}>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleRemoveProject(project.id)}
+                        >
                           <Trash2 className="h-4 w-4" />
                           <span className="sr-only">Remove project</span>
                         </Button>
@@ -529,7 +638,10 @@ export default function ProfileEditPage() {
                       <p className="text-sm">{project.description}</p>
                       <div className="flex flex-wrap gap-1">
                         {project.technologies.map((tech, index) => (
-                          <span key={index} className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium">
+                          <span
+                            key={index}
+                            className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium"
+                          >
                             {tech}
                           </span>
                         ))}
@@ -545,7 +657,9 @@ export default function ProfileEditPage() {
                         id="project-name"
                         placeholder="e.g., E-commerce Platform"
                         value={newProject.name}
-                        onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
+                        onChange={(e) =>
+                          setNewProject({ ...newProject, name: e.target.value })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -554,16 +668,28 @@ export default function ProfileEditPage() {
                         id="project-description"
                         placeholder="Describe your project..."
                         value={newProject.description}
-                        onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+                        onChange={(e) =>
+                          setNewProject({
+                            ...newProject,
+                            description: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="technologies">Technologies (comma separated)</Label>
+                      <Label htmlFor="technologies">
+                        Technologies (comma separated)
+                      </Label>
                       <Input
                         id="technologies"
                         placeholder="e.g., React, Node.js, MongoDB"
                         value={newProject.technologies}
-                        onChange={(e) => setNewProject({ ...newProject, technologies: e.target.value })}
+                        onChange={(e) =>
+                          setNewProject({
+                            ...newProject,
+                            technologies: e.target.value,
+                          })
+                        }
                       />
                     </div>
                     <Button onClick={handleAddProject}>
@@ -586,23 +712,6 @@ export default function ProfileEditPage() {
           </div>
         </div>
       </main>
-      <footer className="border-t py-4 px-4 md:px-6">
-        <div className="container flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 DevConnect. All rights reserved.</p>
-          <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="/terms">
-              Terms of Service
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/privacy">
-              Privacy
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="/contact">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }
-
